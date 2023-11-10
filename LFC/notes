@@ -1,0 +1,31 @@
+
+
+Mettere sempre le stdlib, stdio, math, string, poi devo aggiungere i moduli che facciamo noi, usando
+
+#include "FULL PATH OF YOUR LIB", questo su tutti i programmi
+
+Per i modules:
+I file moduli bisogna definirli #define RANLXD_C (stesso nome del file in maiuscolo e . -> _ ) 
+definisce variabile preprocessore ed è definita. Così posso sapere che questo modulo è già stato incluso nel
+pacchetto. #define va messo in ogni modulo.
+
+Main program:
+devo sempre usare #define MAIN_PROGRAM, stessa cosa per i devel. 
+In testa al file main, ci sono tante 'static variables' (tra include e prima funzione), static serve 
+così che siano globali a tutte le routine di main ma non a tutti gli altri moduli inclusi.
+
+global: tutti i moduli possono accedere e main program (non metto static)
+global (modulo per modulo, using static)
+local (definite routine per routine)
+
+Le xx che ci ha dato sono le coordinate dei cammini di feynman, il montecarlo genera cammini di feynman, così che poi possiamo integrare su tutti i cammini, perciò dobbiamo generare configurazioni con probabilità P = exp(-S(x)/Z,
+così generiamo un certo numero di cammini di F (N_cfg), la xx[N] è la coordinata x_0,..,x_n-1. 
+Generiamo un tot di cammini usando la distribuzione e poi calcoliamo. 
+
+Prima cosa: SCRIVI ROUTINE CHE CALCOLA AZIONE DELL'OSCILLATORE ARMONICO
+
+scrivi routine che calcola azione dell'oscillatore armonico
+Unità di misura ha il passo discretizzato è fissato a 1 (a = 1). Azione in funzione dei parametri sarà somma di m piccolo diviso 2 (spostamento nel reticolo) + 1/2 mw^2 (vedi note). 
+M e omega li metterei nel global con define #define M 1.0 e #define W 1.0 e N 64 (questo nel global.h)
+Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check program in cui metto dei numeri che scelgo in modo tale che so calcolare l'azione in modo facile analiticamente e vedo se funziona (usando una azione che so integrare magari
+Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check program in cui metto dei numeri che scelgo in modo tale che so calcolare l'azione in modo facile analiticamente e vedo se funziona (usando una azione che so integrare magari). Le x_i non devono essere costanti, altrimenti non controllo il termine cinetico. Deve essere tale che x_n=x_0, imponendo correttamente le condizioni periodiche Deve essere tale che x_n=x_0, imponendo correttamente le condizioni periodiche.

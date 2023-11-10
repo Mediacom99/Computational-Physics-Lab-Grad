@@ -27,10 +27,16 @@
     printf("\n");
     printf("Timing of ranlxd (average time per random number in microsec)\n");
     printf("\n");
-
+	
+    /*Devo inizializzare il generatore di numeri random, solo 1 volta per simulazione, con certo seed*/
     for (level=1;level<=2;level++)
     {
-      rlxd_init(level,1);
+      
+      /*
+       * Va inizializzato solo una volta init e mai nei moduli, solo nel main
+       * se me ne servono altri posso chiamare ranlxd(r,N)
+       */
+      rlxd_init(level,1); /*Level può essere 0,1,2 mentre l'altro è il seed, devo cambiare seed tra simulazioni*/
 
       t1=(float)clock();
       for (k=1;k<=NLOOPS;k++) 
