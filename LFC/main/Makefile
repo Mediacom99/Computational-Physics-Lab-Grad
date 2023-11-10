@@ -19,7 +19,7 @@ all: rmxeq mkdep mkxeq
 
 # main programs and required modules 
 
-MAIN = 
+MAIN = prova 
 
 RANDOM = ranlxs ranlxd gauss
 
@@ -32,14 +32,15 @@ MODULES = $(RANDOM) $(START) $(EXTRAS)
 
 # search path for modules
 
-MDIR = ../../modules
+MDIR = ~/lab-computazionale/computational-physics-lab/LFC/modules
 
 VPATH = $(MDIR)/random:$(MDIR)/start:$(MDIR)/extras
 
 
+
 # additional include directories
 
-INCPATH = ../../include
+INCPATH = ~/lab-computazionale/computational-physics-lab/LFC/include/
 
 
 # additional libraries to be included 
