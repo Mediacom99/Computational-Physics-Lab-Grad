@@ -35,5 +35,17 @@ Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check progr
 # ##########################################################################
  2h di teoria: lezione 5, Catene di Markov
  2h di lab:
+
+ 	Routine che calcola S
+	Routine che calcola DELTA S
+
+	Faremo il metropolis, ad un certo punto 
+	cambieremo le coordinate di una componente
+	della n-upla e calcoliamo Delta S = S(x_new) - S(x_old)
+	per ogni componente cambiata e lo devo fare per ogni 
+	componente. (routine che cambia solo una componente, passo
+	indice della variabile e passo la variazione della variabile
+	e mi ritorna il DeltaS corrispondente. (calcolo Delta S
+	nel modo più efficiente possibile (non fare N operazioni))
  	
  	

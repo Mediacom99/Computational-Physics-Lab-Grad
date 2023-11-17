@@ -19,7 +19,7 @@ all: rmxeq mkdep mkxeq
 
 # main programs and required modules 
 
-MAIN = prova 
+MAIN = test 
 
 RANDOM = ranlxs ranlxd gauss
 
@@ -27,20 +27,22 @@ START = start utils
 
 EXTRAS = 
 
-MODULES = $(RANDOM) $(START) $(EXTRAS)
+HARM-OSCILLATOR = action
+
+MODULES = $(RANDOM) $(START) $(EXTRAS) $(HARM-OSCILLATOR)
 
 
 # search path for modules
 
-MDIR = ~/lab-computazionale/computational-physics-lab/LFC/modules
+MDIR = ../modules
 
-VPATH = $(MDIR)/random:$(MDIR)/start:$(MDIR)/extras
-
+VPATH = $(MDIR)/random:$(MDIR)/start:$(MDIR)/extras:$(MDIR)/harm-oscillator
+	
 
 
 # additional include directories
 
-INCPATH = ~/lab-computazionale/computational-physics-lab/LFC/include/
+INCPATH = ../include
 
 
 # additional libraries to be included 

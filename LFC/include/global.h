@@ -11,6 +11,8 @@
 #define GLOBAL_H
 
 #define N 64
+#define M 1.0
+#define OM 1.0
 
 #if defined MAIN_PROGRAM
   #define EXTERN
