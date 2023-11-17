@@ -1,7 +1,11 @@
 
+#define ACTION_C
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "global.h"
+#include "action.h" /* The object file must include its own header file */
+
 
 /*
  * Modulo dell'oscillatore armonico con tutte le funzioni
@@ -10,12 +14,14 @@
  *
  */
 
+
 /*
  * Devo calcolare: S e Delta S in due routine diverse, è importante
  * che la routine di DeltaS sia la più efficiente possibile.
  */
 
-double action ()
+
+double action_dbl ()
 {
 	/*Check that xx sia stato inizializzato*/
 

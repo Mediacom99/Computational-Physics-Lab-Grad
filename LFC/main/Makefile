@@ -27,17 +27,16 @@ START = start utils
 
 EXTRAS = 
 
-HARM-OSCILLATOR = action
+HOSCILLATOR = action
 
-MODULES = $(RANDOM) $(START) $(EXTRAS) $(HARM-OSCILLATOR)
+MODULES = $(RANDOM) $(START) $(EXTRAS) $(HOSCILLATOR)
 
 
 # search path for modules
 
 MDIR = ../modules
 
-VPATH = $(MDIR)/random:$(MDIR)/start:$(MDIR)/extras:$(MDIR)/harm-oscillator
-	
+VPATH = $(MDIR)/random:$(MDIR)/start:$(MDIR)/extras:$(MDIR)/hoscillator
 
 
 # additional include directories
