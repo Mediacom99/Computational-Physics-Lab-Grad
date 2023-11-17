@@ -29,3 +29,10 @@ Unità di misura ha il passo discretizzato è fissato a 1 (a = 1). Azione in fun
 M e omega li metterei nel global con define #define M 1.0 e #define W 1.0 e N 64 (questo nel global.h)
 Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check program in cui metto dei numeri che scelgo in modo tale che so calcolare l'azione in modo facile analiticamente e vedo se funziona (usando una azione che so integrare magari
 Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check program in cui metto dei numeri che scelgo in modo tale che so calcolare l'azione in modo facile analiticamente e vedo se funziona (usando una azione che so integrare magari). Le x_i non devono essere costanti, altrimenti non controllo il termine cinetico. Deve essere tale che x_n=x_0, imponendo correttamente le condizioni periodiche Deve essere tale che x_n=x_0, imponendo correttamente le condizioni periodiche.
+
+############################################################################
+# LEZIONE 17 Nov 2023
+# ##########################################################################
+ 2h di teoria: lezione 5, Catene di Markov
+ 2h di lab:
+ 	
