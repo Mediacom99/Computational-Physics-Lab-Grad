@@ -18,7 +18,7 @@
 /*
  * TO DO: add vector utility function in a new module
  */
-void printXX()
+void printXX(void)
 {
 	int i;
 	for(i = 0; i < N - 1; i++)

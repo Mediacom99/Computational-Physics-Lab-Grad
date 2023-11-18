@@ -21,7 +21,7 @@
  */
 
 
-double action_dbl ()
+double action_dbl (void)
 {
 	/*Check that xx sia stato inizializzato*/
 
@@ -36,5 +36,7 @@ double action_dbl ()
 	return sum;
 
 }
+
+
 
 
