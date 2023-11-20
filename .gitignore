@@ -6,7 +6,6 @@ compile_commands.json
 
 test*
 
-*test
 # Prerequisites
 *.d
 
