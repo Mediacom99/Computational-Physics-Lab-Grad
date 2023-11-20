@@ -11,10 +11,6 @@
 
 
 
-
-
-
-
 /*
  * TO DO: add vector utility function in a new module
  */
