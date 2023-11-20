@@ -1,6 +1,7 @@
 #JUST FOR THIS REPO
 ./LFC/compile_commands.json
-
+./LFC/main/*.o
+./LFC/main/*.d
 
 
 # Compiled source #
