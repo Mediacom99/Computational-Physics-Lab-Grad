@@ -1,6 +1,7 @@
 #JUST FOR THIS REPO
 compile_commands.json
 .cache
+*test
 # Prerequisites
 *.d
 
