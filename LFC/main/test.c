@@ -28,23 +28,24 @@ void printXX(void)
 
 int main(int argc, char* argv[])
 {
-	if(argc == 2)
-	{
-	/* Initialize random generator */ 
-	rlxd_init(2, atoi(argv[1]));
-	/* Get random values */
-	ranlxd(&xx[0],N); 
-	}
-	else if(argc > 2)
-	{
-		printf("Too many arguments, exiting...\n");
-		return(1);
-	}
-	else
-	{
-	gauss_dble(&xx[0],N);
-	}
-	
+
+  
+  if (argc == 2) {
+    
+    /* Initialize random generator */ 
+    rlxd_init(2, atoi(argv[1]));
+    /*Get random generator values */
+    ranlxd(&xx[0], N);
+  }
+  else if (argc > 2) {
+    printf("Too many arguments, exiting...\n");
+    return(1);
+  }
+  else {
+    gauss_dble(&xx[0], N);
+  }
+
+
 
 	printXX();
 	printf("\n");
