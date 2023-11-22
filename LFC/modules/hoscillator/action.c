@@ -37,6 +37,27 @@ double action_dbl (void)
 
 }
 
+/*This function calculates DeltaS = S(..,x,..) - S(...,y,...)*/
+/* y è il numero da sostituire a xx[j]*/
+double delta_action_dbl(double y, int j){
+ 
+  double res;
+  /*Check that j is a valid position */
+  if( j < 0 || j >= N){
+    printf("Wrong argument 'j' in function 'delta_action_dbl'\nExiting...\n");
+    exit(EXIT_FAILURE);
+  }
+
+  /*Basically we are only calculating the difference at i = j and i = j-1, the
+   * only two terms that are not zero*/
+  /*First line: Difference of part (x[i+1] - x[i])^2
+   *Second line: Difference of part (x[i+1]^2 + x[i]^2)*/
+  res = 0.5*(y*y - xx[j]*xx[j] - y*xx[j-1] + xx[j-1]*xx[j]);
+  res += (OM*OM)*0.25*(y*y - xx[j]*xx[j]);
+  return res;
+
+}
+
 
 
 

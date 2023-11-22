@@ -28,7 +28,7 @@ void printXX(void)
 
 int main(int argc, char* argv[])
 {
-
+  
   
   if (argc == 2) {
     
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 	printXX();
 	printf("\n");
 	printf("Action : %.20f\n", action_dbl());
-	
+  printf("Delta_Action : %f\n", delta_action_dbl(xx[N-1], N-1));	
 
 	return(0);
 

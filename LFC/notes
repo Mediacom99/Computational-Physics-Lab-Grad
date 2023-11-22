@@ -1,3 +1,12 @@
+#######################
+
+Clangd needs a compile_commands.json at the root of the project (LFC/) so that 
+it knows where to find all the headers when checking for errors in the code.
+You can use the command 'bear -- make <source-name>' to compile and make a compile_commands.json,
+then copy compile_commands.json to the root LFC/
+
+######################
+
 
 
 Mettere sempre le stdlib, stdio, math, string, poi devo aggiungere i moduli che facciamo noi, usando
