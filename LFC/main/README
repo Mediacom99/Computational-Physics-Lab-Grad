@@ -1,5 +1,7 @@
 
-To make sure that clangd in neovim knows where your header are you have to create a 
+To make sure that clangd in neovim knows where your headers are you have to create a 
 compile_commands.json file by using the app 'bear' like this:
 
 make clean && bear -- make all
+
+and then copy that file to the root of the project: LFC/
