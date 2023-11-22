@@ -4,11 +4,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "global.h"
 #include "action.h"
 #include "random.h"
-#include "start.h"
-
+#include "start.h" 
 
 
 /*
@@ -19,8 +19,12 @@ void printXX(void)
 	int i;
 	for(i = 0; i < N - 1; i++)
 	{
-		printf("%f\n",xx[i]);
+		printf("%f ",xx[i]);
+    if(i%3 == 0){
+      printf("\n");
+    }
 	}
+  printf("\n");
 	return;
 }
 
@@ -28,8 +32,12 @@ void printXX(void)
 
 int main(int argc, char* argv[])
 {
-  
-  
+  /*Measuring time*/
+  double t1;
+  double t2;
+  int i;
+
+  t1 = (double)clock();
   if (argc == 2) {
     
     /* Initialize random generator */ 
@@ -46,12 +54,17 @@ int main(int argc, char* argv[])
   }
 
 
-
+  printf("Printing xx[N]: \n");
 	printXX();
-	printf("\n");
-	printf("Action : %.20f\n", action_dbl());
-  printf("Delta_Action : %f\n", delta_action_dbl(xx[N-1], N-1));	
+	printf("----------------------------------\n");
+	printf("Action : %.9e\n", action_dbl()); 
 
+  for (i = 0; i < N - 1; i+=3) {
+    printf("Delta_Action : %.9e\n", delta_action_dbl(xx[i], i + 1));
+  }
+  
+  t2 = (double)clock();
+  printf("TIME ELAPSED: %.9e s \n", t2/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC);
 	return(0);
 
 }
