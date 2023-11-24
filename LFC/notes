@@ -57,4 +57,55 @@ Bisogna imporre condizione periodiche, x_0 = x_n. Dovrei scrivere un check progr
 	e mi ritorna il DeltaS corrispondente. (calcolo Delta S
 	nel modo più efficiente possibile (non fare N operazioni))
  	
- 	
+ 
+ LEZIONE 24 NOVEMBRE 2023
+
+ vario una variabile dello stato, calcolo Rx' / Rx e vedo: 
+  se è > 1 allora accetto lo stato della catena
+  se è < 1 allora genero un altro numero casuale r2 e vedo se r2 < e^{-DeltaS}, deltaS 
+  calcolato con la variazione, allora salvo lo stato, altrimenti non accetto lo stato e 
+  lascio quello corrente. (Cambio una coordinata alla volta così deltaS è piccolo
+  e il teorema ergodico lo uso in modo efficiente, per teorie fermioniche per esempio deltaS
+  è grosso, perciò cambio tutte le coordinate insieme ma in modo correlato, così che la 
+  deltaS sia piccola.
+
+  Periodo termalizzazione della catena, si fa un N grande, genero nuove 
+  configurazioni e le butto. dopo N passi avrò la distribuzione iniziale per P^N, 
+  se N è abbastanza grande (distribuzione asintotica indipendente dallo stato iniziale)
+
+  Una volta che ho raggiunto uno stato termalizzto, cioè tale che è distribuito con pigrecoK
+  allora posso smetterla di buttare stati. (tutti generati con e^{-S}).
+
+  TODO:
+
+  Routine che fa il metropolis, proppore di cambiare una var alla volta, 
+  verifico la proposta e decido se cambiare o no, così facendo itero.
+  Si definisce uno sweep: 
+      N grande passi della catena di markov in cui ho provato a cambiare tutte le variabili 
+      singolarmente, allora ho fatto uno sweep del reticolo.
+    
+    PROCESSO DI TERMALIZZAZIONE DELLA CATENA DI MARKOV:
+      1. Estraggo random la configurazione iniziale
+      2. Loop sul xx e provo a cambiare ogni coordinata, se e^{-deltaS} >= secondo numero random, 
+      allora accetto, altrimenti metto quello vecchio e vado avanti.
+      3. calcolo action per ogni sweep e plotto in funzione del tempo markoviano (numero di 
+      sweep), plotto action, partendo da freddo (xx[N] = 0 all'inizio) o partenza calda (numeri random)
+      dovrebbero convergere oscillando attorno a N/2 (per M = OM = 1). --> Catena di 
+      Markov è termalizzata. Perciò da lì posso usare le estrazioni per calcolare i PI
+
+      Routine sweep.
+      Delta scelgo tra 0.5 e 3
+      Calcolo ad ogni sweep S e vedo come cambia in funzione del numero di sweep.
+
+      Routine sweep:
+
+      Stato xx[N] e array r[2N] di numeri casuali.
+      Per ogni elemento in posizione j di xx, scambialo in questo modo:
+      x_j_new - x_j_old = 2delta(r[j] - 0.5); con delta da scegliere tra 0.5 e 3
+      poi calcola e^{-deltaS} e verifica:
+      1. se e^{} >= r[N + j] allora accetta il nuovo stato cambiato
+      2. altrimenti rigetta il cambiamento e mantieni x_j_old.
+      Ripeti per ogni elemento dello stato.
+
+      Poi chiama questa routine nel main, per ogni sweep calcola S e plotta con 
+      lo step nel for loop del main.

@@ -7,6 +7,7 @@
 #ifndef ACTION_C
 extern double action_dbl(void);
 extern double delta_action_dbl(double y, int j);
+extern void sweep(void);
 #endif
 
 #endif

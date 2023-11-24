@@ -27,16 +27,12 @@ double action_dbl (void)
 	double sum;
 	int i;
   sum = 0.0;
-	for(i = 0; i < N - 1; i++)
+	for(i = 0; i < N; i++)
 	{
-		sum += 0.5 * (xx[i+1] - xx[i])*(xx[i+1] - xx[i]) 
-		       + (OM*OM)*0.25*(xx[i+1]*xx[i+1] + xx[i]*xx[i]);
+		sum += M*0.5 * (xx[(i+1)%N] - xx[i])*(xx[(i+1)%N] - xx[i]) 
+		       + (OM*OM)*M*0.5*(xx[(i)]*xx[(i)]);
 	}
-  /* Adding the i = N-1 term where xx[N] = x[0]*/
-	sum +=  0.5*(xx[0] - xx[N - 1])*(xx[0] - xx[N-1]) 
-          + (OM*OM)*0.25*(xx[0]*xx[0] + xx[N-1]*xx[N-1]);
-  sum*= M/(2.0);
-	return sum;
+  return sum;
 
 }
 
@@ -46,6 +42,8 @@ double action_dbl (void)
  *        j = which coordinate to change
  *  Returns: the difference of the action with when x_j -> x_j + dx 
  * */
+
+/* NEEDS TO BE FIXED */
 double delta_action_dbl(double dx, int j){
  
   double res;
@@ -54,17 +52,20 @@ double delta_action_dbl(double dx, int j){
     printf("Wrong argument 'j = %d' in function delta_action_dbl (out of bounds)\nExiting...\n",j);
     exit(EXIT_FAILURE);
   }
-
-  /*Basically we are only calculating the difference at i = j and i = j-1, the
-   * only two terms that are not zero*/
-  /*First line: Difference of part (x[i+1] - x[i])^2
-   *Second line: Difference of part (x[i+1]^2 + x[i]^2)*/
-  res = 0.5*(dx*dx - xx[j]*xx[j] - dx*xx[j-1] + xx[j-1]*xx[j])
-        + (OM*OM)*0.25*(dx*dx - xx[j]*xx[j]);
+  
+  /* CONTROLLARE CHE SIA GIUSTA */
+  res = M * 0.5 * (2*xx[j]*dx*(1+ OM*OM) - 2*xx[j+1]*dx)
+        + (OM*OM)*M*0.5*(dx*dx + 2*xx[j]*dx) + M*0.5*(2*dx*xx[j-1] - 2*xx[j]*dx);
   return res;
 
 }
 
+
+/* Sweep: sweep through the current state, change each coordinate and */
+void sweep(void)
+{
+  return;
+}
 
 
 
