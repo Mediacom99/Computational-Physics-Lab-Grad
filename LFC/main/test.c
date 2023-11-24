@@ -13,11 +13,12 @@
 
 /*
  * TO DO: add vector utility function in a new module
+ *        add process time calculation in a util module
  */
 void printXX(void)
 {
 	int i;
-	for(i = 0; i < N - 1; i++)
+	for(i = 0; i < N; i++)
 	{
 		printf("%f ",xx[i]);
     if(i%3 == 0){
