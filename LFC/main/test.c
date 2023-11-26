@@ -13,20 +13,8 @@
 /*
  * TO DO: add vector utility function in a new module
  *        add process time calculation in a util module
- */
-void printXX(void)
-{
-	int i;
-	for(i = 0; i < N; i++)
-	{
-		printf("%f ",xx[i]);
-    if(i%3 == 0){
-      printf("\n");
-    }
-	}
-  printf("\n");
-	return;
-}
+ */ 
+
 
 
 
@@ -35,7 +23,9 @@ int main(int argc, char* argv[])
   /*Measuring time*/
   double t1;
   double t2;
-  /* int i; */
+  int i; 
+  FILE* file;
+
 
   t1 = (double)clock();
 
@@ -45,30 +35,39 @@ int main(int argc, char* argv[])
     /* Initialize random generator */ 
     rlxd_init(1, atoi(argv[1]));
     /*Get random generator values */
-    ranlxd(&xx[0], N);
+    ranlxd(xx, N);
   }
   else if (argc > 2) {
     printf("Too many arguments, exiting...\n");
     return(1);
   }
   else {
-    gauss_dble(&xx[0], N);
+    gauss_dble(xx, N);
   }
   
   /* Execute a sweep, calculate action, save action value and markov time (step)
    * loop this and then plot (markov time, S(markov time))*/
   
-
+  /*
   printf("Printing initial state: \n");
-	printXX();
+	print_state();
 	printf("----------------------------------\n");
 	
   printf("Action : %.9e\n", action_dbl());
   printf("Delta_Action: %.9e\n", delta_action_dbl(0.1,0));
-
-  /* for (i = 0; i < N - 1; i+=3) {
+  
+  for (i = 0; i < N - 1; i+=3) {
     printf("Delta_Action : %.9e\n", delta_action_dbl(xx[i], i + 1));
-  }  */
+  }  */ 
+  
+  file = fopen("./plot/data","w");
+  for(i=0; i < 10000; i++)
+  {
+    fprintf(file,"%e,%d\n", action_dbl(), i);
+    sweep();
+  }
+  fclose(file);
+
 
   t2 = (double)clock();
   printf("TIME ELAPSED: %.9e s \n", t2/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC);
