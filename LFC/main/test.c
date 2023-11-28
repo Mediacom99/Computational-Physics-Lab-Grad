@@ -26,14 +26,12 @@ int main(int argc, char* argv[])
   int i; 
   FILE* file;
   unsigned int seed;
-
+   
   t1 = (double)clock();
-
-  /* Initialize state either with std gauss pdf or given a seed for the generator*/ 
+   
   seed = 15031999;
   /* Initialize random generator */ 
-  rlxd_init(1, seed);
-  /*Get random generator values */
+  start_ranlux(1, seed);
   
   /*
   WARM START
@@ -45,18 +43,17 @@ int main(int argc, char* argv[])
   {
     xx[i] = 0.0;
   } 
- 
+   
   file = fopen("./plot/data","w");
   for(i=0; i < 1000; i++)
   {
     fprintf(file,"%f,%d\n", action_dbl(xx), i);
     sweep(xx);
   }
-  fclose(file);
-  
-
+  fclose(file); 
+ 
   t2 = (double)clock();
   printf("TIME ELAPSED: %.9e s \n", t2/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC);
-	return(0);
+  return(0);
 
 }

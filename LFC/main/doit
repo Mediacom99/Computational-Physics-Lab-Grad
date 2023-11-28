@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "**********  Compiling...  **********"
+make clean 
+make test
+if [[ $? -ne 0 ]]; then
+  echo "********** Unable to compile  **********"
+  exit 1
+fi
+echo "**********  Compiled successfully  **********"
+echo "**********  Running program...  **********"
+./test
+if [[ $? -ne 0 ]]; then
+  echo "**********  Program exited with errors  **********"
+  exit 1
+fi
+echo "**********  Finished running with NO errors  **********"
+
+python3 plot/plot.py 
+make clean 
+exit 0
