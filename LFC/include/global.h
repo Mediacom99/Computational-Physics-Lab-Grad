@@ -10,7 +10,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#define N 64
+#define N 1000
 #define M 1.0
 #define OM 1.0
 /*DELTA to be chosen between 0.5 and 3*/

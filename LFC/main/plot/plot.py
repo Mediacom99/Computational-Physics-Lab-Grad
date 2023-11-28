@@ -38,7 +38,7 @@ fig.set_size_inches(30/2.54, 30/2.54)
 ax.scatter(x,f, color = "black") #RK4
 #plt.xticks(np.arange(min(x), max(x), 0.05))
 
-ax.hlines(y=32, xmin = 0.0, xmax = np.amax(x), linewidth=2, color='red')
+ax.hlines(y=32, xmin = 0.0, xmax = np.amax(x), linewidth=5, color='red')
 #ax.vlines(x=3*np.pi/2.0, ymin = np.amin(f), ymax = np.amax(f), linewidth=5, color='black')
 
 #ax.plot(lsp, a, color = "green")
@@ -53,6 +53,6 @@ ax.set_xlabel("step")
 ax.set_ylabel("Action")
 ax.legend(["Numerical solution","Approximation","g = 3"])
 #ax.set(xlim =(np.amin(x),np.amax(x)),ylim=(np.amin(f)*1.25,np.amax(f)*1.25))
-ax.set(xlim =(np.amin(x),np.amax(x)),ylim=(np.amin(f),np.amax(f)))
+ax.set(xlim =(np.amin(x),np.amax(x)*1.05),ylim=(np.amin(f),np.amax(f)))
 #xlim=(np.amin(x),np.amax(x)+2)
 plt.show()

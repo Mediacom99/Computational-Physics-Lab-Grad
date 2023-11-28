@@ -25,26 +25,27 @@ int main(int argc, char* argv[])
   double t2;
   int i; 
   FILE* file;
-
+  unsigned int seed;
 
   t1 = (double)clock();
 
-  /* Initialize state either with std gauss pdf or given a seed for the generator*/
-  if (argc == 2) {
-    
-    /* Initialize random generator */ 
-    rlxd_init(1, atoi(argv[1]));
-    /*Get random generator values */
-    ranlxd(xx, N);
-  }
-  else if (argc > 2) {
-    printf("Too many arguments, exiting...\n");
-    return(1);
-  }
-  else {
-    gauss_dble(xx, N);
-  }
+  /* Initialize state either with std gauss pdf or given a seed for the generator*/ 
+  seed = 15031999;
+  /* Initialize random generator */ 
+  rlxd_init(1, seed);
+  /*Get random generator values */
   
+  /*
+  WARM START
+    ranlxd(xx, N);
+  */
+
+  /*COLD START*/
+  for(i = 0; i < N; i++)
+  {
+    xx[i] = 0.0;
+  }
+
   /* Execute a sweep, calculate action, save action value and markov time (step)
    * loop this and then plot (markov time, S(markov time))*/
   
@@ -59,15 +60,16 @@ int main(int argc, char* argv[])
   for (i = 0; i < N - 1; i+=3) {
     printf("Delta_Action : %.9e\n", delta_action_dbl(xx[i], i + 1));
   }  */ 
+   
   
   file = fopen("./plot/data","w");
-  for(i=0; i < 10000; i++)
+  for(i=0; i < 1000; i++)
   {
-    fprintf(file,"%e,%d\n", action_dbl(), i);
-    sweep();
+    fprintf(file,"%f,%d\n", action_dbl(xx), i);
+    sweep(xx);
   }
   fclose(file);
-
+  
 
   t2 = (double)clock();
   printf("TIME ELAPSED: %.9e s \n", t2/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC);

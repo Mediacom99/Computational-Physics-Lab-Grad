@@ -17,36 +17,34 @@
 
 /*UTILITY*/
 
-void print_state(void)
+void print_state(double* x)
 {
 	int i;
 	for(i = 0; i < N; i++)
 	{
-		printf("%e ",xx[i]);
+		printf("%e ",x[i]);
     if(i%3 == 0){
       printf("\n");
     }
 	}
   printf("\n");
 	return;
-}
+} 
 
-/*
- * Devo calcolare: S e Delta S in due routine diverse, è importante
- * che la routine di DeltaS sia la più efficiente possibile.
- */
-
-/*returns the action calculated at the current state of xx[N] as a double*/
-double action_dbl(void)
-{
-  /*Check that xx sia stato inizializzato*/
-	double sum;
+/* 
+  Args: 
+    double* x -> current state on which to calculate the H.Oscillator action 
+  Returns: the action as a double
+*/
+double action_dbl(double* x)
+{ 
+  double sum;
 	int i;
   sum = 0.0;
 	for(i = 0; i < N; i++)
 	{
-		sum += M*0.5 * (xx[(i+1)%N] - xx[i])*(xx[(i+1)%N] - xx[i]) 
-		       + (OM*OM)*M*0.5*(xx[(i)]*xx[(i)]);
+		sum += M*0.5 * (x[(i+1)%N] - x[i])*(x[(i+1)%N] - x[i]) 
+		       + (OM*OM)*M*0.5*(x[(i)]*x[(i)]);
 	}
   return sum;
 
@@ -59,39 +57,34 @@ double action_dbl(void)
  *  Returns: the difference of the action with when x_j -> x_j + dx 
  * */
 
-/* NEEDS TO BE FIXED */
-double delta_action_dbl(double dx, int j){ 
+double delta_action_dbl(double* x, double dx, int j){ 
   
-  double temp;
+  double store[N];
+  int i;
+
   /*Check that j is a valid position */
   if( j < 0 || j >= N){
     printf("Wrong argument 'j = %d' in function delta_action_dbl (out of bounds)\nExiting...\n",j);
     exit(EXIT_FAILURE);
   }
-  
-  /* CONTROLLARE CHE SIA GIUSTA */
-  /*
-  res = M * 0.5 * (2*xx[j]*dx*(1+ OM*OM) - 2*xx[j+1]*dx)
-        + (OM*OM)*M*0.5*(dx*dx + 2*xx[j]*dx) + M*0.5*(2*dx*xx[j-1] - 2*xx[j]*dx);
-  */ 
-  if(j==0)
+
+  for(i = 0; i < N; i++)
   {
-    temp = xx[0] - xx[1];
-  }else{
-    temp = xx[j-1] - xx[(j+1)%N];
+    if(i == j)
+    {
+      store[i] = x[i] + dx;
+    }else{
+    store[i] = x[i];
+    }
   }
-  return M*0.5 * 
-        (
-          (2+OM*OM)*dx*dx
-          + 2*OM*OM*dx*xx[j]
-          + 2*dx*temp
-        );
+
+  return action_dbl(store) - action_dbl(xx);  
+
 } 
 
 /* Sweep: sweep through the current state, change each coordinate and check 
  * whether or not to update the state*/
-/*NEEDS TO BE FIXED*/
-void sweep(void)
+void sweep(double* x)
 {
   /*Array of 2N random numbers, N for variation of state and N for test*/
   double r[2*N];
@@ -104,9 +97,9 @@ void sweep(void)
   /*Loop sullo stato xx[N]*/
   for(j = 0; j < N; j++){
     var = 2*DELTA*(r[j]-0.5);
-    edeltaS = exp(-1*delta_action_dbl(var, j));
+    edeltaS = exp(-1*delta_action_dbl(x,var, j));
     if(edeltaS >= r[j+N]){
-      xx[j] += var;
+      x[j] += var;
     }
   }
   return;
