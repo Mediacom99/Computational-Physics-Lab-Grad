@@ -37,31 +37,15 @@ int main(int argc, char* argv[])
   
   /*
   WARM START
-    ranlxd(xx, N);
+  ranlxd(xx, N);
   */
 
   /*COLD START*/
   for(i = 0; i < N; i++)
   {
     xx[i] = 0.0;
-  }
-
-  /* Execute a sweep, calculate action, save action value and markov time (step)
-   * loop this and then plot (markov time, S(markov time))*/
-  
-  /*
-  printf("Printing initial state: \n");
-	print_state();
-	printf("----------------------------------\n");
-	
-  printf("Action : %.9e\n", action_dbl());
-  printf("Delta_Action: %.9e\n", delta_action_dbl(0.1,0));
-  
-  for (i = 0; i < N - 1; i+=3) {
-    printf("Delta_Action : %.9e\n", delta_action_dbl(xx[i], i + 1));
-  }  */ 
-   
-  
+  } 
+ 
   file = fopen("./plot/data","w");
   for(i=0; i < 1000; i++)
   {
