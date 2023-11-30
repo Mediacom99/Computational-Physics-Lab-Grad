@@ -1,0 +1,38 @@
+#!/bin/bash
+
+
+if [[ "$1" == "help" ]]; then
+  echo "Available options:"
+  echo "default option                            './doit' both compiles and runs the program, without showing the graph"
+  echo "pic                                       shows graph of values in data in plot/"
+  echo "help                                      opens this help menu"
+  echo "compile                                   compiles only. does NOT run program"
+  exit 0
+fi
+make clean
+echo "**********  Compiling...  ***************************************************************************************************"
+make test
+if [[ $? -ne 0 ]]; then
+  echo "********** Unable to compile  *********************************************************************************************"
+  exit 1
+fi
+echo "**********  Compiled successfully  ******************************************************************************************"
+if [[ "$1" == "compile" ]]; then
+  exit 0
+fi
+echo "**********  Running program...  *********************************************************************************************"
+echo ""
+./test
+if [[ $? -ne 0 ]]; then
+  echo ""
+  echo "**********  Program exited with errors  ***********************************************************************************"
+  exit 1
+fi
+echo ""
+echo "**********  Finished running with no errors  ********************************************************************************"
+
+if [[ "$1" == "pic" ]]; then
+  python3 plot/plot.py 
+fi
+make clean 
+exit 0

@@ -26,7 +26,8 @@ int main(int argc, char* argv[])
   int i; 
   FILE* file;
   unsigned int seed;
-   
+  int runs;
+
   t1 = (double)clock();
    
   seed = 15031999;
@@ -36,16 +37,21 @@ int main(int argc, char* argv[])
   /*
   WARM START
   ranlxd(xx, N);
-  */
+  */ 
+
 
   /*COLD START*/
   for(i = 0; i < N; i++)
   {
     xx[i] = 0.0;
-  } 
-   
+  }
+
+
   file = fopen("./plot/data","w");
-  for(i=0; i < 1000; i++)
+  
+  runs = 500;
+
+  for(i=0; i < runs; i++)
   {
     fprintf(file,"%f,%d\n", action_dbl(xx), i);
     sweep(xx);
