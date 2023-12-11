@@ -3,12 +3,10 @@
 #define MAIN_PROGRAM
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
 #include "action.h"
 #include "global.h"
-#include "random.h"
 #include "start.h"
 
 /*
