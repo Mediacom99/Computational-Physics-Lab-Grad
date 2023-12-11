@@ -1,14 +1,15 @@
+/* Copyright 2023 Edoardo Bertoli */
+
 #define MAIN_PROGRAM
 
-#include "action.h"
-#include "global.h"
-/*#include "random.h"
- *#include <stdlib.h>
- */
-#include "start.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "action.h"
+#include "global.h"
+#include "random.h"
+#include "start.h"
 
 /*
  * TO DO: add vector utility function in a new module
