@@ -1,0 +1,7 @@
+
+Best run (using heap alloc for gaussian random 2*N sized array in sweep)
+
+N (state size) = 10e6
+N. of sweeps = 10e3
+TIME ELAPSED: 9.052770400e+01 s
+
