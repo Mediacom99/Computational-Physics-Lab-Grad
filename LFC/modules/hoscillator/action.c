@@ -57,20 +57,25 @@ double deltaS_dbl(double *x, double dx, int j) {
   } else {
     temp = x[j - 1];
   }
-  return M * 0.5 * (2 + OM * OM) * (2 * dx * x[j] + dx * dx) -
-         M * dx * (x[j + 1] + temp);
+  return M * 0.5 * (2 + OM * OM) * (2 * dx * x[j % N] + dx * dx) -
+         M * dx * (x[(j + 1) % N] + temp);
 }
 
 /* Sweep: sweep through the current state, change each coordinate and check
  * whether or not to update the state*/
 void sweep(double *x) {
   /*Array of 2N random numbers, N for variation of state and N for test*/
-  double r[2 * N];
+  /* double r[2 * N]; */
+  int size = 2 * N;
+
+  /* I had to use heap allocation for it to work with N >ish 600K */
+  double *r = (double *)malloc(size * sizeof(double));
   int j;
   double edeltaS;
   double var;
   /*Make sure randome generator is initialized in MAIN before this step*/
-  ranlxd(r, 2 * N);
+  ranlxd(r, size);
+
   for (j = 0; j < N; j++) {
     var = 2 * DELTA * (r[j] - 0.5);
     edeltaS = exp(-1 * deltaS_dbl(x, var, j));
@@ -78,5 +83,6 @@ void sweep(double *x) {
       x[j] += var;
     }
   }
+  free(r);
   return;
 }

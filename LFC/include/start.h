@@ -1,6 +1,8 @@
 
 #ifndef START_H
 #define START_H
+/* I had to add this or gcc goes brr*/
+
 #include <stddef.h>
 
 #ifndef START_C

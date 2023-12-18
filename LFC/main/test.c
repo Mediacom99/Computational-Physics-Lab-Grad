@@ -20,11 +20,12 @@ int main(int argc, char *argv[]) {
   int i;
   FILE *file;
   unsigned int seed;
-  int runs;
+  int sweeps;
 
   t1 = (double)clock();
-
+  file = fopen("./plot/data", "w");
   seed = 15031999;
+
   /* Initialize random generator */
   start_ranlux(1, seed);
 
@@ -38,17 +39,15 @@ int main(int argc, char *argv[]) {
     xx[i] = 0.0;
   }
 
-  file = fopen("./plot/data", "w");
-
-  runs = 5000;
-
-  for (i = 0; i < runs; i++) {
+  sweeps = 500;
+  for (i = 0; i < sweeps; i++) {
     fprintf(file, "%f,%d\n", action_dbl(xx), i);
     sweep(xx);
   }
-  fclose(file);
 
+  fclose(file);
   t2 = (double)clock();
   printf("TIME ELAPSED: %.9e s \n", t2 / CLOCKS_PER_SEC - t1 / CLOCKS_PER_SEC);
-  return (0);
+
+  return 0;
 }
