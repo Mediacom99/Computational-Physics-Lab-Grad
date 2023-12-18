@@ -2,12 +2,11 @@
 
 #define MAIN_PROGRAM
 
-#include <stdio.h>
-#include <time.h>
-
 #include "action.h"
 #include "global.h"
 #include "start.h"
+#include <stdio.h>
+#include <time.h>
 
 /*
  * TO DO: add vector utility function in a new module
@@ -41,7 +40,7 @@ int main(int argc, char *argv[]) {
 
   file = fopen("./plot/data", "w");
 
-  runs = 500;
+  runs = 5000;
 
   for (i = 0; i < runs; i++) {
     fprintf(file, "%f,%d\n", action_dbl(xx), i);

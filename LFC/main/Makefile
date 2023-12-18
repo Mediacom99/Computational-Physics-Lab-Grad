@@ -54,7 +54,7 @@ LIBPATH =
 # scheduling and optimization options (such as -DSSE -DSSE2 -DP4)
  
 CFLAGS = -std=c89 -pedantic -fstrict-aliasing \
-         -Wall -Wno-long-long -Werror -O 
+         -Wall -Wno-long-long -Werror -ggdb -O 
  
 
 ############################## do not change ###################################
@@ -77,7 +77,8 @@ LDFLAGS = $(addprefix -L,$(LIBPATH)) $(addprefix -l,$(LIBS))
 # rule to make dependencies
 
 $(addsuffix .d,$(PGMS)): %.d: %.c Makefile
-	@ $(CC) -MM -ansi $(INCDIRS) $< -o $@
+	@ $(CC) -MM -ansi $(INCDIRS) $< -o $@ 
+
 
 
 # rule to compile source programs
@@ -94,7 +95,7 @@ $(MAIN): %: %.o $(OBJECTS) Makefile
 
 # produce executables
 
-mkxeq: $(MAIN)
+mkxeq: $(MAIN) 
 
 
 # remove old executables and old error log file
