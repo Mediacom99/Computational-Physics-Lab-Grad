@@ -9,9 +9,8 @@
 #include <stdlib.h>
 
 /*
- * Modulo dell'oscillatore armonico con tutte le funzioni
- * necessarie per calcolare numericamente quello che serve.
- * */
+ * Modulo dell'oscillatore 
+ */
 
 /*UTILITY*/
 
@@ -28,7 +27,7 @@ void print_state(double *x) {
 }
 
 /* Initialize the state, should be called once in main,
- * BEFORE having initalized the random generator:
+ * AFTER having initalized the random generator:
  *  arg 0: char,
  *              w = warm start (random values through ranlxd)
  *              c = cold start (all zeroes)
