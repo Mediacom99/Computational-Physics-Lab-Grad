@@ -6,6 +6,7 @@
 #include "global.h"
 #include "start.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 /*
@@ -22,6 +23,10 @@ int main(int argc, char *argv[]) {
   unsigned int seed;
   int sweeps;
 
+  if (argc < 3) {
+    printf("Wrong arguments: ./test <start_mode> <#sweeps>\nExiting...\n");
+    exit(1);
+  }
   t1 = (double)clock();
   file = fopen("./plot/data", "w");
   seed = 15031999;
@@ -29,17 +34,11 @@ int main(int argc, char *argv[]) {
   /* Initialize random generator */
   start_ranlux(1, seed);
 
-  /*
-  WARM START
-  ranlxd(xx, N);
-  */
+  /*Initialize state: w = warm, c = cold*/
+  init_state(*argv[1], xx);
 
-  /*COLD START*/
-  for (i = 0; i < N; i++) {
-    xx[i] = 0.0;
-  }
+  sweeps = atoi(argv[2]);
 
-  sweeps = 500;
   for (i = 0; i < sweeps; i++) {
     fprintf(file, "%f,%d\n", action_dbl(xx), i);
     sweep(xx);

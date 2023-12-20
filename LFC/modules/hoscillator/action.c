@@ -27,6 +27,32 @@ void print_state(double *x) {
   return;
 }
 
+/* Initialize the state, should be called once in main,
+ * BEFORE having initalized the random generator:
+ *  arg 0: char,
+ *              w = warm start (random values through ranlxd)
+ *              c = cold start (all zeroes)
+ *  arg 1: pointer to state to Initialize
+ */
+
+void init_state(char s, double *x) {
+
+  int i;
+  if (s == 'w') {
+    ranlxd(x, N);
+    return;
+  } else if (s == 'c') {
+    for (i = 0; i < N; i++) {
+      x[i] = 0.0;
+    }
+    return;
+  } else {
+    printf("Incorrect state initialization mode:\neither 'w' for warm or 'c' "
+           "for cold, check init_state() call in main\nexiting...\n");
+    exit(1);
+  }
+}
+
 /*
   Args:
     double* x -> current state on which to calculate the H.Oscillator action
