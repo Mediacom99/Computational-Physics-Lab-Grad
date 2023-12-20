@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 /*
- * Modulo dell'oscillatore 
+ * Modulo dell'oscillatore
  */
 
 /*UTILITY*/
@@ -91,13 +91,14 @@ double deltaS_dbl(double *x, double dx, int j) {
 void sweep(double *x) {
   /*Array of 2N random numbers, N for variation of state and N for test*/
   /* double r[2 * N]; */
-  int size = 2 * N;
-
-  /* I had to use heap allocation for it to work with N >ish 600K */
-  double *r = (double *)malloc(size * sizeof(double));
   int j;
   double edeltaS;
   double var;
+  int size = 2 * N;
+  double *r;
+
+  /* I had to use heap allocation for it to work with N >ish 600K */
+  r = (double *)malloc(size * sizeof(double));
   /*Make sure randome generator is initialized in MAIN before this step*/
   ranlxd(r, size);
 
@@ -108,6 +109,7 @@ void sweep(double *x) {
       x[j] += var;
     }
   }
+
   free(r);
   return;
 }
